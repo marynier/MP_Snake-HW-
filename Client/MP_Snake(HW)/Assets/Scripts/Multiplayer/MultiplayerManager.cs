@@ -9,6 +9,7 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     [field: SerializeField] public Skins _skins;
     private const string GameRoomName = "state_handler";
     private ColyseusRoom<State> _room;
+
     protected override void Awake()
     {
         base.Awake();

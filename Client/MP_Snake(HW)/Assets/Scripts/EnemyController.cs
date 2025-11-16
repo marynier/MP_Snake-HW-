@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     private Player _player;
     private Snake _snake;
+
     public void Init(Player player, Snake snake)
     {
         _player = player;

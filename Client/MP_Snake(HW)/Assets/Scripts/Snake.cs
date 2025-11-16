@@ -19,6 +19,7 @@ public class Snake : MonoBehaviour
         _tail = Instantiate(_tailPrefab, transform.position, Quaternion.identity);
         _tail.Init(_head, _speed, detailCount, material);
     }
+
     public void SetDetailCount(int detailCount)
     {
         _tail.SetDetailCount(detailCount);
@@ -29,6 +30,7 @@ public class Snake : MonoBehaviour
         _tail.Destroy();
         Destroy(gameObject);
     }
+
     private void Update()
     {
         Move();
@@ -43,6 +45,4 @@ public class Snake : MonoBehaviour
     {
         _head.LookAt(pointToLook);
     }
-
-
 }
