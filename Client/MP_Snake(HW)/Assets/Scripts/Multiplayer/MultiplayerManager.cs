@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 {
     #region Server
+    [field: SerializeField] public Skins _skins;
     private const string GameRoomName = "state_handler";
     private ColyseusRoom<State> _room;
     protected override void Awake()
@@ -19,7 +20,12 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
 
     private async void Connection()
     {
-        _room = await client.JoinOrCreate<State>(GameRoomName);
+        Dictionary<string, object> data = new Dictionary<string, object>()
+        {
+            { "skins", _skins.length }            
+        };
+
+        _room = await client.JoinOrCreate<State>(GameRoomName, data);
         _room.OnStateChange += OnChange;
     }
 
@@ -66,7 +72,7 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
         Vector3 position = new Vector3(player.x, 0, player.z);
         Quaternion quaternion = Quaternion.identity;
         Snake snake = Instantiate(_snakePrefab, position, quaternion);
-        snake.Init(player.d);
+        snake.Init(player.d, _skins.GetMaterial(player.skin));
 
         PlayerAim aim = Instantiate(_playerAim, position, quaternion);
         aim.Init(snake.Speed);
@@ -82,7 +88,7 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     {
         Vector3 position = new Vector3(player.x, 0, player.z);
         Snake snake = Instantiate(_snakePrefab, position, Quaternion.identity);
-        snake.Init(player.d);
+        snake.Init(player.d, _skins.GetMaterial(player.skin));
 
         EnemyController enemy = snake.AddComponent<EnemyController>();
         enemy.Init(player, snake);

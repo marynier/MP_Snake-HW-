@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Tail : MonoBehaviour
 {
+    [SerializeField] private MeshRenderer _meshRenderer;
     [SerializeField] private Transform _detailPrefab;
     [SerializeField] private float _detailDistance = 1f;
     private Transform _head;
@@ -11,8 +12,9 @@ public class Tail : MonoBehaviour
     private List<Vector3> _positionHistory = new List<Vector3>();
     private List<Quaternion> _rotationHistory = new List<Quaternion>();
 
-    public void Init(Transform head, float speed, int detailCount)
+    public void Init(Transform head, float speed, int detailCount, Material material)
     {
+        _meshRenderer.material = material;
         _snakeSpeed = speed;
         _head = head;
 
@@ -54,6 +56,8 @@ public class Tail : MonoBehaviour
         _details.Insert(0, detail);
         _positionHistory.Add(position);
         _rotationHistory.Add(rotation);
+
+        detail.GetComponentInChildren<MeshRenderer>().material = _meshRenderer.material;
     }
 
     private void RemoveDetail()
@@ -94,7 +98,7 @@ public class Tail : MonoBehaviour
         {
             float percent = distance / _detailDistance;
             _details[i].position = Vector3.Lerp(_positionHistory[i + 1], _positionHistory[i], percent); //взять предыдущую точку (откуда перемещается деталь) и переместить в сторону новой точки. distance/_detailDistance
-            _details[i].rotation = Quaternion.Lerp(_rotationHistory[i + 1], _rotationHistory[i], percent);           
+            _details[i].rotation = Quaternion.Lerp(_rotationHistory[i + 1], _rotationHistory[i], percent);
         }
     }
 

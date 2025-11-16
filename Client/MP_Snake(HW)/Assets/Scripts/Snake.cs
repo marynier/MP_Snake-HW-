@@ -3,15 +3,21 @@
 public class Snake : MonoBehaviour
 {
     public float Speed { get { return _speed; } }
-
+    [SerializeField] private MeshRenderer[] _meshRenderers;
     [SerializeField] private Tail _tailPrefab;
     [SerializeField] private Transform _head;
     [SerializeField] private float _speed = 2f;
     private Tail _tail;
-    public void Init(int detailCount)
+
+    public void Init(int detailCount, Material material)
     {
+        for (int i = 0; i < _meshRenderers.Length; i++)
+        {
+            _meshRenderers[i].material = material;
+        }
+
         _tail = Instantiate(_tailPrefab, transform.position, Quaternion.identity);
-        _tail.Init(_head, _speed, detailCount);
+        _tail.Init(_head, _speed, detailCount, material);
     }
     public void SetDetailCount(int detailCount)
     {
@@ -24,9 +30,9 @@ public class Snake : MonoBehaviour
         Destroy(gameObject);
     }
     private void Update()
-    {        
+    {
         Move();
-    }    
+    }
 
     private void Move()
     {
@@ -37,6 +43,6 @@ public class Snake : MonoBehaviour
     {
         _head.LookAt(pointToLook);
     }
-    
+
 
 }

@@ -5048,6 +5048,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1265595968}
   - component: {fileID: 1265595967}
+  - component: {fileID: 1265595969}
   m_Layer: 0
   m_Name: MultiplayerManager
   m_TagString: Untagged
@@ -5068,6 +5069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MultiplayerManager
   _colyseusSettings: {fileID: 11400000, guid: f4e659a54f712e646ba316d7e84d54d6, type: 2}
+  _skins: {fileID: 1265595969}
   _playerAim: {fileID: 3834214620363852843, guid: b5de79c4df964af4fa06263bb31b7aa2, type: 3}
   _controllerPrefab: {fileID: 4281595634007151407, guid: 0d86bdeecd8012141b0f1dede82c51b6, type: 3}
   _snakePrefab: {fileID: 4688353063474188278, guid: 9c5a2af9ff4b4194e97afe953fb41c39, type: 3}
@@ -5086,6 +5088,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1265595969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265595966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 220829524bbc3de4ea8398f8ed19348b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Skins
+  _materials:
+  - {fileID: 2100000, guid: d964148043be23d468e258db7134114c, type: 2}
+  - {fileID: 2100000, guid: 28eda46deee5a8743943972180828138, type: 2}
+  - {fileID: 2100000, guid: 3459ebb4014ee234bb7c39cf51e689bd, type: 2}
+  - {fileID: 2100000, guid: 4e1d20cd4fb594d45b66c51b9d00661d, type: 2}
 --- !u!4 &1268517962 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: da08a1953eb072e47a0912caf4204a1c, type: 3}
