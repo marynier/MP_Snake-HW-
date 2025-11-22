@@ -6,6 +6,7 @@ public class Controller : MonoBehaviour
 {
     [SerializeField] private float _cameraOffsetY = 15f;
     [SerializeField] private Transform _cursor;
+
     private MultiplayerManager _multiplayerManager;
     private PlayerAim _playerAim;
     private string _clientID;
@@ -13,8 +14,9 @@ public class Controller : MonoBehaviour
     private Snake _snake;
     private Camera _camera;
     private Plane _plane;
+    private PlayerCanvas _playerCanvas;
 
-    public void Init(string clientID, PlayerAim aim, Player player, Snake snake)
+    public void Init(string clientID, PlayerAim aim, Player player, Snake snake, PlayerCanvas playercanvas)
     {
         _multiplayerManager = MultiplayerManager.Instance;
         _playerAim = aim;
@@ -26,6 +28,9 @@ public class Controller : MonoBehaviour
 
         _camera.transform.parent = _snake.transform;
         _camera.transform.localPosition = Vector3.up * _cameraOffsetY;
+
+        _playerCanvas = playercanvas;
+        _playerCanvas.SetScore(player.score);
 
         _player.OnChange += OnChange;
     }
@@ -78,6 +83,7 @@ public class Controller : MonoBehaviour
                     break;
                 case "score":
                     _multiplayerManager.UpdateScore(_clientID, (ushort)changes[i].Value);
+                    _playerCanvas.SetScore((ushort)changes[i].Value);
                     break;
                 default:
                     Debug.LogWarning("Не обрабатывается изменение поля " + changes[i].Field);

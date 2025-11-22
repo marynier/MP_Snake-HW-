@@ -18,7 +18,6 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
         DontDestroyOnLoad(gameObject);
         InitializeClient();
         Connection();
-
     }
 
     private async void Connection()
@@ -26,7 +25,7 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
         Dictionary<string, object> data = new Dictionary<string, object>()
         {
             { "skins", _skins.length },
-            {"login", PlayerSettings.Instance.Login}
+            { "login", PlayerSettings.Instance.Login}
         };
 
         _room = await client.JoinOrCreate<State>(GameRoomName, data);
@@ -78,20 +77,22 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     [SerializeField] private PlayerAim _playerAim;
     [SerializeField] private Controller _controllerPrefab;
     [SerializeField] private Snake _snakePrefab;
+    [SerializeField] private PlayerCanvas _playerCanvas;
 
     private void CreatePlayer(Player player)
     {
         Vector3 position = new Vector3(player.x, 0, player.z);
         Quaternion quaternion = Quaternion.identity;
         Snake snake = Instantiate(_snakePrefab, position, quaternion);
-        snake.Init(player.d, _skins.GetMaterial(player.skin), true);
+        snake.Init(player.d, _skins.GetMaterial(player.skin), player.login, true);
 
         PlayerAim aim = Instantiate(_playerAim, position, quaternion);
         aim.Init(snake._head, snake.Speed);
 
         Controller controller = Instantiate(_controllerPrefab);
-        controller.Init(_room.SessionId, aim, player, snake);
+        controller.Init(_room.SessionId, aim, player, snake, _playerCanvas);
         AddLeader(_room.SessionId, player);
+        _playerCanvas.SetLoginText(player.login);
     }
     #endregion
 
@@ -102,7 +103,7 @@ public class MultiplayerManager : ColyseusManager<MultiplayerManager>
     {
         Vector3 position = new Vector3(player.x, 0, player.z);
         Snake snake = Instantiate(_snakePrefab, position, Quaternion.identity);
-        snake.Init(player.d, _skins.GetMaterial(player.skin));
+        snake.Init(player.d, _skins.GetMaterial(player.skin), player.login);
 
         EnemyController enemy = snake.AddComponent<EnemyController>();
         enemy.Init(key, player, snake);

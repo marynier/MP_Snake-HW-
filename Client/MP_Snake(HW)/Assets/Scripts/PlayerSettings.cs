@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public class PlayerSettings : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class PlayerSettings : MonoBehaviour
 
     public string Login { get; private set; }
 
-    public void SetLogin (string login)
+    public void SetLogin(string login)
     {
         Login = login;
     }
