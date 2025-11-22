@@ -522,14 +522,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '1. Player: 500
+  m_text: '1. BestBestBestBes: 500
 
     2. Player: 500
 
     3. Player: 500
 
-    4. Player:
-    500
+    4.
+    Player: 500
 
     5. Player: 500
 
@@ -537,8 +537,8 @@ MonoBehaviour:
 
     7. Player: 500
 
-    8. Player:
-    500'
+    8.
+    Player: 500'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2a31b545223991b42a9687f76b72a827, type: 2}
   m_sharedMaterial: {fileID: -9076736851323080440, guid: 2a31b545223991b42a9687f76b72a827, type: 2}
@@ -565,14 +565,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 28
+  m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -581,7 +581,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
+  m_TextWrappingMode: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -9451,7 +9451,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 340.8568, y: 435.346}
+  m_SizeDelta: {x: 392.4244, y: 431.4445}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &2053863270
 MonoBehaviour:

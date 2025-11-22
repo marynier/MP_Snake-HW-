@@ -7,7 +7,8 @@ public class Snake : MonoBehaviour
     [SerializeField] private int _playerLayer = 6;
     [SerializeField] private MeshRenderer[] _meshRenderers;
     [SerializeField] private Tail _tailPrefab;
-    [SerializeField] private TMP_Text _loginText;    
+    [SerializeField] private TMP_Text _loginText;
+    [SerializeField] private RectTransform _loginImage;
     [field: SerializeField] public Transform _head { get; private set; }
     [SerializeField] private float _speed = 2f;
     private Tail _tail;
@@ -22,11 +23,13 @@ public class Snake : MonoBehaviour
             {
                 childrens[i].gameObject.layer = _playerLayer;
             }
-            _loginText.text = "ME";            
+            _loginText.text = "ME";
+            SetLoginImageSize();
         }
         else
         {
             _loginText.text = login;
+            SetLoginImageSize();
         }
 
         for (int i = 0; i < _meshRenderers.Length; i++)
@@ -66,5 +69,14 @@ public class Snake : MonoBehaviour
     public void SetRotation(Vector3 pointToLook)
     {
         _head.LookAt(pointToLook);
+    }
+
+    private void SetLoginImageSize()
+    {
+        _loginText.ForceMeshUpdate();
+        Vector2 textSize = _loginText.GetRenderedValues(false);
+        float padding = 0.5f;
+
+        _loginImage.sizeDelta = new Vector2(textSize.x + padding, textSize.y);
     }
 }
